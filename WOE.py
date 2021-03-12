@@ -63,9 +63,15 @@ def woe(data, variable, target):
     temp['non-target'] = 1 - temp[target]
     event = temp.groupby([variable])[target].sum() / total_event
     non_event = temp.groupby([variable])['non-target'].sum() / total_non_event
-    prob_temp = pd.concat([event, non_event], axis=1)
-    prob_temp['woe'] = np.log(prob_temp[target]/prob_temp['non-target'])
-    return prob_temp['woe'].to_dict()
+    temp_df = pd.concat([event, non_event], axis=1)
+    temp_df['woe'] = np.log(temp_df[target]/temp_df['non-target'])
+    for var in [variable]:  
+        fig = plt.figure()
+        fig = temp_df.groupby([var])['stroke'].mean().plot()
+        fig.set_title('Relationship between {} and Stroke'.format(var))
+        fig.set_ylabel('Mean Stroke')
+        plt.show()
+    return temp_df['woe'].to_dict()
 
 
 def integer_encode(train, test, variable, ordinal_mapping):
