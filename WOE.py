@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 
-df = pd.read_csv(r'C:\Users\Zaur\Desktop\healthcare-dataset-stroke-data.csv')
+df = pd.read_csv(r'...Desktop\healthcare-dataset-stroke-data.csv')
 
 # percentage of missing values
 print(df.isnull().mean())
