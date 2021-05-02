@@ -1,0 +1,6 @@
+constant_features = [var for var in X_train.columns if X_train[var].std() == 0]
+
+X_train.drop(labels=constant_features, axis=1, inplace=True)
+X_test.drop(labels=constant_features, axis=1, inplace=True)
+
+X_train.shape, X_test.shape
